@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterinsta/Responsive/responsive_layout.dart';
 import 'package:flutterinsta/Responsive/webScreenLayout.dart';
 import 'package:flutterinsta/screens/login_screen.dart';
+import 'package:flutterinsta/screens/signup_screen.dart';
 import 'package:flutterinsta/utils/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Responsive/mobileScreenLayout.dart';
@@ -40,11 +41,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: mobileBackgroundColor,
       ),
-      home: const ResponsiveLayout(
-        webScreenLayout: WebScreenLayout(),
-        mobileScreenLayout: MobileScreenLayout(),
-      ),
-      // home: const LoginScreen(),
+      // home: const ResponsiveLayout(
+      // webScreenLayout: WebScreenLayout(),
+      // mobileScreenLayout: MobileScreenLayout(),
+      // ),
+      home: const SignupScreen(),
     );
   }
 }

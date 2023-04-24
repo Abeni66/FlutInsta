@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutterinsta/utils/colors.dart';
-import 'package:flutterinsta/widgets/text_field_input.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+import '../utils/colors.dart';
+import '../widgets/text_field_input.dart';
+
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _bioController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
 
   @override
   void dispose() {
@@ -20,6 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _bioController.dispose();
+    _usernameController.dispose();
   }
 
   @override
@@ -43,6 +48,15 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 64,
               ),
+              TextFieldInput(
+                hintText: 'Enter your username',
+                textInputType: TextInputType.emailAddress,
+                textEditingController: _usernameController,
+              ),
+
+              const SizedBox(
+                height: 24,
+              ),
               // text field input fro email
               TextFieldInput(
                 hintText: 'Enter your email',
@@ -58,6 +72,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 textInputType: TextInputType.emailAddress,
                 textEditingController: _passwordController,
                 isPass: true,
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              TextFieldInput(
+                hintText: 'Enter your bio',
+                textInputType: TextInputType.emailAddress,
+                textEditingController: _bioController,
               ),
               const SizedBox(
                 height: 24,
