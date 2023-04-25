@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutterinsta/resources/auth_method.dart';
 
 import '../utils/colors.dart';
 import '../widgets/text_field_input.dart';
@@ -48,6 +49,27 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(
                 height: 64,
               ),
+              //circular widget
+              Stack(
+                children: [
+                  CircleAvatar(
+                    radius: 64,
+                    backgroundImage: NetworkImage(
+                        'https://images.unsplash.com/photo-1682326605629-ad1876630d1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'),
+                  ),
+                  Positioned(
+                    bottom: -10,
+                    left: 80,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.add_a_photo),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               TextFieldInput(
                 hintText: 'Enter your username',
                 textInputType: TextInputType.emailAddress,
@@ -86,7 +108,15 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               // button
               InkWell(
-                onTap: () {},
+                onTap: () async {
+                  String res = await AuthMethods().signUpUser(
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                      username: _usernameController.text,
+                      bio: _bioController.text,
+                  );
+                  print(res);
+                },
                 child: Container(
                   child: const Text('Log in'),
                   width: double.infinity,
