@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../utils/colors.dart';
 import '../widgets/text_field_input.dart';
+import 'login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -58,6 +59,12 @@ class _SignupScreenState extends State<SignupScreen> {
     if (res != 'success') {
       showSnackBar(res, context);
     }
+  }
+  void navigateToLoginin() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const LoginScreen(),
+        ),
+        );
   }
 
   @override
@@ -174,26 +181,26 @@ class _SignupScreenState extends State<SignupScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Container(
-                  //   child: const Text('Dont have an Account'),
-                  //   padding: const EdgeInsets.symmetric(
-                  //     vertical: 8,
-                  //   ),
-                  // ),
-                  // GestureDetector(
-                  //   onTap: () {},
-                  //   child: Container(
-                  //     child: const Text(
-                  //       'Sign Up',
-                  //       style: TextStyle(
-                  //         fontWeight: FontWeight.bold,
-                  //       ),
-                  //     ),
-                  //     padding: const EdgeInsets.symmetric(
-                  //       vertical: 8,
-                  //     ),
-                  //   ),
-                  // ),
+                  Container(
+                    child: const Text('Already have an Account'),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: navigateToLoginin,
+                    child: Container(
+                      child: const Text(
+                        'Log In',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8,
+                      ),
+                    ),
+                  ),
                 ],
               )
             ],

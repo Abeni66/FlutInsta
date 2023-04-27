@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutterinsta/resources/auth_method.dart';
+import 'package:flutterinsta/screens/signup_screen.dart';
 import 'package:flutterinsta/utils/colors.dart';
 import 'package:flutterinsta/utils/utils.dart';
 import 'package:flutterinsta/widgets/text_field_input.dart';
@@ -34,11 +35,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (res == "success") {
     } else {
+      // ignore: use_build_context_synchronously
       showSnackBar(res, context);
     }
     setState(() {
       _isLoading = false;
     });
+  }
+
+  void navigateToSignUp() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const SignupScreen(),
+        ),
+        );
   }
 
   @override
@@ -119,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: navigateToSignUp,
                     child: Container(
                       child: const Text(
                         'Sign Up',
