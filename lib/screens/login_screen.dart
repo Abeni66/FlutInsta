@@ -6,6 +6,10 @@ import 'package:flutterinsta/utils/colors.dart';
 import 'package:flutterinsta/utils/utils.dart';
 import 'package:flutterinsta/widgets/text_field_input.dart';
 
+import '../Responsive/mobileScreenLayout.dart';
+import '../Responsive/responsive_layout.dart';
+import '../Responsive/webScreenLayout.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -34,6 +38,14 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _emailController.text, password: _passwordController.text);
 
     if (res == "success") {
+       Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const ResponsiveLayout(
+            webScreenLayout: WebScreenLayout(),
+            mobileScreenLayout: MobileScreenLayout(),
+          ),
+        ),
+      );
     } else {
       // ignore: use_build_context_synchronously
       showSnackBar(res, context);

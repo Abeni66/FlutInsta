@@ -6,6 +6,9 @@ import 'package:flutterinsta/resources/auth_method.dart';
 import 'package:flutterinsta/utils/utils.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../Responsive/mobileScreenLayout.dart';
+import '../Responsive/responsive_layout.dart';
+import '../Responsive/webScreenLayout.dart';
 import '../utils/colors.dart';
 import '../widgets/text_field_input.dart';
 import 'login_screen.dart';
@@ -58,13 +61,23 @@ class _SignupScreenState extends State<SignupScreen> {
     });
     if (res != 'success') {
       showSnackBar(res, context);
-    }
-  }
-  void navigateToLoginin() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const LoginScreen(),
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const ResponsiveLayout(
+            webScreenLayout: WebScreenLayout(),
+            mobileScreenLayout: MobileScreenLayout(),
+          ),
         ),
-        );
+      );
+    } else {}
+  }
+
+  void navigateToLoginin() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+    );
   }
 
   @override
