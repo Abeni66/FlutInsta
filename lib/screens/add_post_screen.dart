@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutterinsta/providers/user_provider.dart';
+import 'package:flutterinsta/resources/firestore_methods.dart';
 import 'package:flutterinsta/utils/colors.dart';
 import 'package:flutterinsta/utils/utils.dart';
 import 'package:image_picker/image_picker.dart';
@@ -24,11 +25,19 @@ class _AddPostScreenState extends State<AddPostScreen> {
     String username,
     String profImage,
   ) async {
-try {
-  
-} catch (e) {
-  
-}
+    try {
+      String res = await FirestoreMethods().uploadPost(
+          _descriptionController.text, _file!, uid, username, profImage);
+
+      if (res == "success") {
+        // ignore: use_build_context_synchronously
+        showSnackBar('Posted', context);
+      } else {
+        showSnackBar(res, context);
+      }
+    } catch (e) {
+      showSnackBar(e.toString(), context);
+    }
   }
 
   _selectImage(BuildContext context) async {
@@ -100,7 +109,8 @@ try {
               centerTitle: false,
               actions: [
                 TextButton(
-                  onPressed: postImage,
+                  onPressed: () =>
+                      postImage(user.uid, user.username, user.photoUrl),
                   child: const Text(
                     'post',
                     style: TextStyle(
